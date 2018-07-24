@@ -18,5 +18,7 @@ public class Message {
         this.dateTime = LocalDateTime.now();
     }
 
-    
+    public void addReceiver(int userID) {
+        destination.add(userID);
+    }
 }
