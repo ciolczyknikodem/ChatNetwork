@@ -18,4 +18,14 @@ public class ConnectionManager {
             System.out.println(e.getClass().getName() + " --> " + e.getMessage());
         }
     }
+
+    public void closeConnection()  {
+        try {
+            if (connection != null)
+                connection.close();
+        }
+        catch (SQLException e) {
+            System.out.println(e.getMessage() + " --> " + "connection with DB wasn't closed properly.");
+        }
+    }
 }
