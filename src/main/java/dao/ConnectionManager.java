@@ -7,8 +7,8 @@ import java.sql.SQLException;
 public class ConnectionManager {
 
     private Connection connection = null;
-    
-    public void getConnectionDB() {
+
+    public void openConnection() {
         try {
             Class.forName("org.postgresql.Driver");
             connection = DriverManager.getConnection(
