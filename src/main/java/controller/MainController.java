@@ -1,6 +1,6 @@
 package controller;
 
-import utils.FrameDisplay;
+import utils.FrameManager;
 import view.MainFrame;
 import view.Registration;
 
@@ -17,7 +17,7 @@ public class MainController {
         mainFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         mainFrame.pack();
-        FrameDisplay.displayCenter(mainFrame);
+        FrameManager.displayCenter(mainFrame);
         mainFrame.setVisible(true);
     }
 
@@ -26,7 +26,7 @@ public class MainController {
         registrationFrame.setContentPane(new Registration().getRegistrationPanel());
 
         registrationFrame.pack();
-        FrameDisplay.displayCenter(registrationFrame);
+        FrameManager.displayCenter(registrationFrame);
         registrationFrame.setVisible(true);
     }
 

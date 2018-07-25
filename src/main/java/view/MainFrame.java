@@ -1,11 +1,11 @@
 package view;
 
 import controller.MainController;
-import utils.FrameDisplay;
+import utils.FrameManager;
 
 import javax.swing.*;
 
-public class MainFrame extends JFrame{
+public class MainFrame {
 
     private JTextField loginField;
     private JPasswordField passwordField;
@@ -23,18 +23,11 @@ public class MainFrame extends JFrame{
 
     private void singInEvent() {
         signInButton.addActionListener(e -> {
-            String password = buildPassword(passwordField.getPassword());
+            String password = FrameManager.buildPassword(passwordField.getPassword());
             String login = loginField.getText();
         });
     }
 
-    private String buildPassword(char[] letters) {
-        StringBuilder sb = new StringBuilder();
-        for (char letter : letters) {
-            sb.append(letter);
-        }
-        return sb.toString();
-    }
 
     private void exitEvent() {
         exitButton.addActionListener(e -> System.exit(0));
@@ -43,11 +36,10 @@ public class MainFrame extends JFrame{
     private void registrationEvent() {
         registerButton.addActionListener(e -> {
             MainController.runRegistration();
-            FrameDisplay.changeFrameDisplay(MainController.getRegistrationFrame(), MainController.getMainFrame());
+            FrameManager.changeFrameDisplay(MainController.getRegistrationFrame(), MainController.getMainFrame());
 
         });
     }
-
 
     public JPanel getPanelMain() {
         return panelMain;

@@ -27,7 +27,15 @@
             <artifactId>postgresql</artifactId>
             <version>42.1.4</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-agroal</artifactId>
+            <version>5.3.3.Final</version>
+            <type>pom</type>
+        </dependency>
     </dependencies>
+
 
 
 </project>
