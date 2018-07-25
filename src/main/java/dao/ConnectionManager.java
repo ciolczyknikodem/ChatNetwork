@@ -1,31 +1,35 @@
 package dao;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.boot.Metadata;
+import org.hibernate.boot.MetadataSources;
+import org.hibernate.boot.registry.StandardServiceRegistry;
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
-public class ConnectionManager {
+class ConnectionManager {
 
-    private Connection connection = null;
+    protected StandardServiceRegistry standardServiceRegistry;
+    protected SessionFactory sessionFactory;
+    protected Transaction transaction;
+    protected Metadata metadata;
+    protected Session session;
 
-    public void openConnection() {
-        try {
-            Class.forName("org.postgresql.Driver");
-            connection = DriverManager.getConnection(
-                    "jdbc:postgresql://localhost:5432/ChatDB" , "postgre", "Nikodem1989");
-        }
-        catch (Exception e) {
-            System.out.println(e.getClass().getName() + " --> " + e.getMessage());
-        }
+
+    protected void initializeFactory() {
+        standardServiceRegistry = new StandardServiceRegistryBuilder().configure("hibernate.cfg.xml").build();
+        metadata = new MetadataSources(standardServiceRegistry).getMetadataBuilder().build();
+
+        sessionFactory = metadata.getSessionFactoryBuilder().build();
+        session = sessionFactory.openSession();
+
+        transaction = session.beginTransaction();
+
     }
 
-    public void closeConnection()  {
-        try {
-            if (connection != null)
-                connection.close();
-        }
-        catch (SQLException e) {
-            System.out.println(e.getMessage() + " --> " + "connection with DB wasn't closed properly.");
-        }
+    protected void closeConnection() {
+        sessionFactory.close();
+        session.close();
     }
 }
