@@ -13,7 +13,6 @@ public class MainFrame extends JFrame{
     private JButton registerButton;
     private JButton exitButton;
     private JPanel panelMain;
-    private MainController mainController;
 
 
     public MainFrame() {
