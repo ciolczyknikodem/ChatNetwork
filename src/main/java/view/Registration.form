@@ -8,7 +8,7 @@
     <properties/>
     <border type="none"/>
     <children>
-      <component id="820d6" class="javax.swing.JTextField" binding="loginTextField">
+      <component id="820d6" class="javax.swing.JTextField" binding="loginField">
         <constraints>
           <grid row="0" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="0" fill="0" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="-1"/>
@@ -18,7 +18,7 @@
           <horizontalAlignment value="0"/>
         </properties>
       </component>
-      <component id="4a2c1" class="javax.swing.JPasswordField" binding="passwordTextField" default-binding="true">
+      <component id="4a2c1" class="javax.swing.JPasswordField" binding="passwordField">
         <constraints>
           <grid row="1" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="0" fill="0" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="-1"/>
@@ -46,7 +46,7 @@
           <text value="Back"/>
         </properties>
       </component>
-      <component id="d1765" class="javax.swing.JLabel" binding="loginField">
+      <component id="d1765" class="javax.swing.JLabel" binding="loginLabel">
         <constraints>
           <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false">
             <preferred-size width="130" height="16"/>
@@ -54,11 +54,11 @@
         </constraints>
         <properties>
           <horizontalAlignment value="0"/>
-          <labelFor value="820d6"/>
+          <labelFor value=""/>
           <text value="Login"/>
         </properties>
       </component>
-      <component id="da9cb" class="javax.swing.JLabel" binding="passwordField">
+      <component id="da9cb" class="javax.swing.JLabel" binding="passwordLabel">
         <constraints>
           <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false">
             <preferred-size width="130" height="16"/>
@@ -66,7 +66,7 @@
         </constraints>
         <properties>
           <horizontalAlignment value="0"/>
-          <labelFor value="4a2c1"/>
+          <labelFor value=""/>
           <text value="Password"/>
           <verticalAlignment value="0"/>
           <verticalTextPosition value="0"/>
