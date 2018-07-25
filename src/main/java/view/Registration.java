@@ -14,16 +14,14 @@ public class Registration {
 
     public Registration() {
         backButtonEvent();
-    }
-
-    public JPanel getRegistrationPanel() {
-        return registrationPanel;
+        registerButtonEvent();
     }
 
     private void registerButtonEvent() {
         registerButton.addActionListener(e -> {
             String login = loginField.getText();
             String password = FrameManager.buildPassword(passwordField.getPassword());
+
                 }
         );
     }
@@ -32,4 +30,6 @@ public class Registration {
         backButton.addActionListener(e ->
                 FrameManager.changeFrameDisplay(MainController.getMainFrame(), MainController.getRegistrationFrame()));
     }
+
+    public JPanel getRegistrationPanel() { return registrationPanel; }
 }
