@@ -43,13 +43,8 @@ public class MainFrame extends JFrame{
 
     private void registrationEvent() {
         registerButton.addActionListener(e -> {
-            JFrame registrationFrame = new JFrame("User registration");
-            registrationFrame.setContentPane(new Registration().getRegistrationPanel());
-
-            registrationFrame.pack();
-            
-            FrameDisplay.displayCenter(registrationFrame);
-            FrameDisplay.changeFrameDisplay(registrationFrame, MainController.getMainFrame());
+            MainController.runRegistration();
+            FrameDisplay.changeFrameDisplay(MainController.getRegistrationFrame(), MainController.getMainFrame());
 
         });
     }
