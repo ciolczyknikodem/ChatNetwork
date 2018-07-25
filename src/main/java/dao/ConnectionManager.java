@@ -13,6 +13,7 @@ public class ConnectionManager {
             Class.forName("org.postgresql.Driver");
             connection = DriverManager.getConnection(
                     "jdbc:postgresql://localhost:5432/ChatDB" , "postgre", "Nikodem1989");
+            // TODO: IP 192.168.10.208
         }
         catch (Exception e) {
             System.out.println(e.getClass().getName() + " --> " + e.getMessage());
