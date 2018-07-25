@@ -1,6 +1,6 @@
 package controller;
 
-import utils.FramePositioner;
+import utils.FrameDisplay;
 import view.MainFrame;
 
 import javax.swing.*;
@@ -15,7 +15,7 @@ public class MainController {
         mainFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         mainFrame.pack();
-        FramePositioner.display(mainFrame);
+        FrameDisplay.display(mainFrame);
         mainFrame.setVisible(true);
     }
 

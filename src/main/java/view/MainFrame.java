@@ -1,6 +1,7 @@
 package view;
 
-import utils.FramePositioner;
+import controller.MainController;
+import utils.FrameDisplay;
 
 import javax.swing.*;
 
@@ -12,6 +13,8 @@ public class MainFrame extends JFrame{
     private JButton registerButton;
     private JButton exitButton;
     private JPanel panelMain;
+    private MainController mainController;
+
 
     public MainFrame() {
         singInEvent();
@@ -42,12 +45,15 @@ public class MainFrame extends JFrame{
         registerButton.addActionListener(e -> {
             JFrame registrationFrame = new JFrame("User registration");
             registrationFrame.setContentPane(new Registration().getRegistrationPanel());
-            registrationFrame.pack();
 
-            FramePositioner.display(registrationFrame);
-            registrationFrame.setVisible(true);
+            registrationFrame.pack();
+            
+            FrameDisplay.displayCenter(registrationFrame);
+            FrameDisplay.changeFrameDisplay(registrationFrame, MainController.getMainFrame());
+
         });
     }
+
 
     public JPanel getPanelMain() {
         return panelMain;
