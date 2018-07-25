@@ -18,16 +18,18 @@ public class Client {
 
     private boolean status;
 
-    public Client(String login, String password) {
-        this.login = login;
-        this.password = password;
-    }
+    public Client() { }
 
-    public Client(int ID, String login, String password) {
-        this.ID = ID;
-        this.login = login;
-        this.password = password;
-    }
+//    public Client(String login, String password) {
+//        this.login = login;
+//        this.password = password;
+//    }
+//
+//    public Client(int ID, String login, String password) {
+//        this.ID = ID;
+//        this.login = login;
+//        this.password = password;
+//    }
 
     public int getID() {
         return ID;
