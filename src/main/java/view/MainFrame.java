@@ -14,6 +14,7 @@ public class MainFrame extends JFrame{
     public MainFrame() {
         singInEvent();
         exitEvent();
+        registrationEvent();
     }
 
     private void singInEvent() {
@@ -37,7 +38,12 @@ public class MainFrame extends JFrame{
 
     private void registrationEvent() {
         registerButton.addActionListener(e -> {
-            
+            JFrame registrationFrame = new JFrame("Registration");
+            registrationFrame.setContentPane(new Registration().getRegistrationPanel());
+
+            registrationFrame.pack();
+            registrationFrame.setVisible(true);
+
         });
     }
 
