@@ -23,18 +23,11 @@ public class MainFrame {
 
     private void singInEvent() {
         signInButton.addActionListener(e -> {
-            String password = buildPassword(passwordField.getPassword());
+            String password = FrameManager.buildPassword(passwordField.getPassword());
             String login = loginField.getText();
         });
     }
 
-    private String buildPassword(char[] letters) {
-        StringBuilder sb = new StringBuilder();
-        for (char letter : letters) {
-            sb.append(letter);
-        }
-        return sb.toString();
-    }
 
     private void exitEvent() {
         exitButton.addActionListener(e -> System.exit(0));

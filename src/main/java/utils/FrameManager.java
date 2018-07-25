@@ -15,4 +15,12 @@ public class FrameManager {
         frameToShow.setVisible(true);
 
     }
+
+    public static String buildPassword(char[] letters) {
+        StringBuilder sb = new StringBuilder();
+        for (char letter : letters) {
+            sb.append(letter);
+        }
+        return sb.toString();
+    }
 }
