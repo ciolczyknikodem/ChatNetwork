@@ -35,6 +35,12 @@ public class MainFrame extends JFrame{
         exitButton.addActionListener(e -> System.exit(0));
     }
 
+    private void registrationEvent() {
+        registerButton.addActionListener(e -> {
+            
+        });
+    }
+
     public JPanel getPanelMain() {
         return panelMain;
     }
