@@ -1,5 +1,7 @@
 package view;
 
+import utils.FramePositioner;
+
 import javax.swing.*;
 
 public class MainFrame extends JFrame{
@@ -38,12 +40,12 @@ public class MainFrame extends JFrame{
 
     private void registrationEvent() {
         registerButton.addActionListener(e -> {
-            JFrame registrationFrame = new JFrame("Registration");
+            JFrame registrationFrame = new JFrame("User registration");
             registrationFrame.setContentPane(new Registration().getRegistrationPanel());
-
             registrationFrame.pack();
-            registrationFrame.setVisible(true);
 
+            FramePositioner.display(registrationFrame);
+            registrationFrame.setVisible(true);
         });
     }
 
