@@ -1,9 +1,6 @@
 package view;
 
-import sun.applet.Main;
-
 import javax.swing.*;
-import java.awt.*;
 
 public class MainFrame extends JFrame{
 
@@ -13,6 +10,30 @@ public class MainFrame extends JFrame{
     private JButton registerButton;
     private JButton exitButton;
     private JPanel panelMain;
+
+    public MainFrame() {
+        singInEvent();
+        exitEvent();
+    }
+
+    private void singInEvent() {
+        signInButton.addActionListener(e -> {
+            String password = buildPassword(passwordField.getPassword());
+            String login = loginField.getText();
+        });
+    }
+
+    private String buildPassword(char[] letters) {
+        StringBuilder sb = new StringBuilder();
+        for (char letter : letters) {
+            sb.append(letter);
+        }
+        return sb.toString();
+    }
+
+    private void exitEvent() {
+        exitButton.addActionListener(e -> System.exit(0));
+    }
 
     public JPanel getPanelMain() {
         return panelMain;
