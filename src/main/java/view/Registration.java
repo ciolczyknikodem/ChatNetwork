@@ -7,7 +7,7 @@ import javax.swing.*;
 
 public class Registration {
     private JTextField loginTextField;
-    private JTextField passwordTextField;
+    private JPasswordField passwordTextField;
     private JButton registerButton;
     private JButton backButton;
     private JLabel loginField;

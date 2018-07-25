@@ -18,7 +18,7 @@
           <horizontalAlignment value="0"/>
         </properties>
       </component>
-      <component id="ea5a3" class="javax.swing.JTextField" binding="passwordTextField" default-binding="true">
+      <component id="4a2c1" class="javax.swing.JPasswordField" binding="passwordTextField" default-binding="true">
         <constraints>
           <grid row="1" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="0" fill="0" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="-1"/>
@@ -66,7 +66,7 @@
         </constraints>
         <properties>
           <horizontalAlignment value="0"/>
-          <labelFor value="ea5a3"/>
+          <labelFor value="4a2c1"/>
           <text value="Password"/>
           <verticalAlignment value="0"/>
           <verticalTextPosition value="0"/>
