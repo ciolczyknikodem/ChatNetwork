@@ -23,7 +23,7 @@ public class Registration {
     private void registerButtonEvent() {
         registerButton.addActionListener(e -> {
             String login = loginField.getText();
-            String password;
+            String password = FrameManager.buildPassword(passwordField.getPassword());
                 }
         );
     }
