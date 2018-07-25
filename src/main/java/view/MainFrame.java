@@ -1,11 +1,11 @@
 package view;
 
 import controller.MainController;
-import utils.FrameDisplay;
+import utils.FrameManager;
 
 import javax.swing.*;
 
-public class MainFrame extends JFrame{
+public class MainFrame {
 
     private JTextField loginField;
     private JPasswordField passwordField;
@@ -43,11 +43,10 @@ public class MainFrame extends JFrame{
     private void registrationEvent() {
         registerButton.addActionListener(e -> {
             MainController.runRegistration();
-            FrameDisplay.changeFrameDisplay(MainController.getRegistrationFrame(), MainController.getMainFrame());
+            FrameManager.changeFrameDisplay(MainController.getRegistrationFrame(), MainController.getMainFrame());
 
         });
     }
-
 
     public JPanel getPanelMain() {
         return panelMain;

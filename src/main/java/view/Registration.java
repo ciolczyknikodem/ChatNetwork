@@ -1,7 +1,7 @@
 package view;
 
 import controller.MainController;
-import utils.FrameDisplay;
+import utils.FrameManager;
 
 import javax.swing.*;
 
@@ -22,8 +22,16 @@ public class Registration {
         return registrationPanel;
     }
 
+    private void registerButtonEvent() {
+        registerButton.addActionListener(e -> {
+            String login = loginField.getText();
+            String password;
+                }
+        );
+    }
+
     private void backButtonEvent() {
         backButton.addActionListener(e ->
-                FrameDisplay.changeFrameDisplay(MainController.getMainFrame(), MainController.getRegistrationFrame()));
+                FrameManager.changeFrameDisplay(MainController.getMainFrame(), MainController.getRegistrationFrame()));
     }
 }

@@ -3,7 +3,7 @@ package utils;
 import javax.swing.*;
 import java.awt.*;
 
-public class FrameDisplay {
+public class FrameManager {
 
     public static void displayCenter(JFrame frame) {
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
@@ -13,5 +13,6 @@ public class FrameDisplay {
     public static void changeFrameDisplay(JFrame frameToShow, JFrame frameToHide) {
         frameToHide.setVisible(false);
         frameToShow.setVisible(true);
+
     }
 }
