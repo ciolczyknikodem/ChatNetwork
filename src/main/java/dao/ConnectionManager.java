@@ -1,5 +1,7 @@
 package dao;
 
+import model.Client;
+import model.Message;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -7,29 +9,29 @@ import org.hibernate.boot.Metadata;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+import org.hibernate.cfg.Configuration;
 
 class ConnectionManager {
 
-    protected StandardServiceRegistry standardServiceRegistry;
     protected SessionFactory sessionFactory;
     protected Transaction transaction;
-    protected Metadata metadata;
     protected Session session;
 
 
     protected void initializeFactory() {
-        standardServiceRegistry = new StandardServiceRegistryBuilder().configure("hibernate.cfg.xml").build();
-        metadata = new MetadataSources(standardServiceRegistry).getMetadataBuilder().build();
+        sessionFactory = new Configuration()
+                .configure("hibernate.cfg.xml")
+                .addAnnotatedClass(Client.class)
+                .addAnnotatedClass(Message.class)
+                .buildSessionFactory();
 
-        sessionFactory = metadata.getSessionFactoryBuilder().build();
-        session = sessionFactory.openSession();
-
+        session = sessionFactory.getCurrentSession();
         transaction = session.beginTransaction();
 
     }
 
     protected void closeConnection() {
-        sessionFactory.close();
         session.close();
+        sessionFactory.close();
     }
 }
