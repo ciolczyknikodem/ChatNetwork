@@ -18,15 +18,19 @@ public class Registration {
         registerButtonEvent();
     }
 
+    public JPanel getRegistrationPanel() { return registrationPanel; }
+
     private void registerButtonEvent() {
         registerButton.addActionListener(e -> {
             String login = loginField.getText();
             String password = FrameManager.buildPassword(passwordField.getPassword());
+            String repeatedPassword = FrameManager.buildPassword(passwordField1.getPassword());
 
+            boolean isPasswordCorrect = FrameManager.validatePassword(password, repeatedPassword);
             boolean isRegisterSuccessful = FrameManager.registerNewUser(login, password);
 
-            if (isRegisterSuccessful) {
-                
+            if (isRegisterSuccessful && isPasswordCorrect) {
+                // TODO: connect with DB logic
             }
         });
     }
@@ -35,6 +39,4 @@ public class Registration {
         backButton.addActionListener(e ->
                 FrameManager.changeFrameDisplay(MainController.getMainFrame(), MainController.getRegistrationFrame()));
     }
-
-    public JPanel getRegistrationPanel() { return registrationPanel; }
 }
