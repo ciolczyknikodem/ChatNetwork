@@ -4,5 +4,5 @@ import model.Client;
 
 interface ManageDB {
 
-    void add(Client user);
+    boolean add(Client user);
 }

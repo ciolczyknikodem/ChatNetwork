@@ -22,10 +22,12 @@ public class Registration {
             String login = loginField.getText();
             String password = FrameManager.buildPassword(passwordField.getPassword());
 
-            FrameManager.registerNewUser(login, password);
-            
-                }
-        );
+            boolean isRegisterSuccessful = FrameManager.registerNewUser(login, password);
+
+            if (isRegisterSuccessful) {
+                
+            }
+        });
     }
 
     private void backButtonEvent() {
