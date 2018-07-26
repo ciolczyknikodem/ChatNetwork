@@ -33,4 +33,8 @@ public class FrameManager {
         Client user = new Client(login, password);
         return userResources.add(user);
     }
+
+    public static boolean validatePassword(String firstInput, String secondInput) {
+        return firstInput.equals(secondInput);
+    }
 }
