@@ -21,6 +21,9 @@ public class Client {
     @Transient
     private boolean status;
 
+    @Transient
+    private boolean toRegistration;
+
     public Client() { }
 
     public Client(String login, String password) {
@@ -57,4 +60,8 @@ public class Client {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    public boolean isToRegistration() { return toRegistration; }
+
+    public void setToRegistration(boolean toRegistration) { this.toRegistration = toRegistration; }
 }
