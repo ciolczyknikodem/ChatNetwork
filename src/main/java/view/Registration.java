@@ -1,6 +1,8 @@
 package view;
 
 import controller.MainController;
+import controller.RegistrationProcess;
+import model.Client;
 import utils.FrameManager;
 
 import javax.swing.*;
@@ -22,10 +24,14 @@ public class Registration {
             String login = loginField.getText();
             String password = FrameManager.buildPassword(passwordField.getPassword());
 
-            boolean isRegisterSuccessful = FrameManager.registerNewUser(login, password);
+            RegistrationProcess registrationProcess = new RegistrationProcess(
+                    MainController.getIpAddress(),
+                    MainController.getPort()
+            );
 
-            if (isRegisterSuccessful) {
-                
+            Client user = new Client(login, password);
+            if(registrationProcess.run(user)) {
+
             }
         });
     }
