@@ -22,6 +22,8 @@ public class Registration {
             String login = loginField.getText();
             String password = FrameManager.buildPassword(passwordField.getPassword());
 
+            FrameManager.registerNewUser(login, password);
+            
                 }
         );
     }
