@@ -6,8 +6,10 @@ import javax.persistence.*;
 @Table(name = "users")
 public class Client {
 
-    @Id @GeneratedValue
-    @Column(name = "id")
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", updatable = false, nullable = false)
     private int ID;
 
     @Column(name = "name")
@@ -16,15 +18,16 @@ public class Client {
     @Column(name = "password")
     private String password;
 
+    @Transient
     private boolean status;
 
     public Client() { }
 
-//    public Client(String login, String password) {
-//        this.login = login;
-//        this.password = password;
-//    }
-//
+    public Client(String login, String password) {
+        this.login = login;
+        this.password = password;
+    }
+
 //    public Client(int ID, String login, String password) {
 //        this.ID = ID;
 //        this.login = login;
