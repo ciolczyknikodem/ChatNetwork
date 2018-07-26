@@ -1,12 +1,12 @@
 package model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "users")
-public class Client {
-
-
+public class Client implements Serializable {
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", updatable = false, nullable = false)
@@ -29,6 +29,7 @@ public class Client {
     public Client(String login, String password) {
         this.login = login;
         this.password = password;
+        this.toRegistration = true;
     }
 
 //    public Client(int ID, String login, String password) {
