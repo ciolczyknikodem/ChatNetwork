@@ -27,10 +27,10 @@ public class FrameManager {
         return sb.toString();
     }
 
-    public static void registerNewUser(String login, String password) {
+    public static boolean registerNewUser(String login, String password) {
         UserResources userResources = new UserResources();
 
         Client user = new Client(login, password);
-        userResources.add(user);
+        return userResources.add(user);
     }
 }
