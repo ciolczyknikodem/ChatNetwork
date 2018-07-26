@@ -21,4 +21,15 @@ public class Message {
     public void addReceiver(int userID) {
         destination.add(userID);
     }
+
+    @Override
+    public String toString() {
+        StringBuilder result = new StringBuilder("destination: ");
+        for (int id : destination){
+            String number = Integer.toString(id) + " ";
+            result.append(number);
+        }
+        return "destination : " + result + "at: " + dateTime + " " + sender + " send: " + text;
+    }
+
 }
