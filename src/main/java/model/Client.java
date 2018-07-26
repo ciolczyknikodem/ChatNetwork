@@ -20,11 +20,11 @@ public class Client {
 
     public Client() { }
 
-//    public Client(String login, String password) {
-//        this.login = login;
-//        this.password = password;
-//    }
-//
+    public Client(String login, String password) {
+        this.login = login;
+        this.password = password;
+    }
+
 //    public Client(int ID, String login, String password) {
 //        this.ID = ID;
 //        this.login = login;
