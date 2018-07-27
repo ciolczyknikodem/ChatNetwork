@@ -59,11 +59,7 @@ public class Server {
                     Object object = in.readObject();
 
                     if (requestIsUser(object)) {
-                        User user = (User) object;
-                        registerUser(user);
-                        // TODO server must catch duplicates and response exception, now its freeze app
-                        user = find(user);
-                        out.writeObject(user);
+                        handleUserRequest(object);
                     }
                     else {
                         Message message = (Message) object;
@@ -88,12 +84,14 @@ public class Server {
             }
         }
 
-        private boolean requestIsUser(Object object) {
-            return object instanceof User;
-        }
+        private void handleUserRequest(Object object) throws IOException {
+            User user = (User) object;
 
-        public ObjectOutputStream getOutputStream() {
-            return out;
+            if(user.isToRegistration()) {
+                registerUser(user);
+            }
+            user = find(user);
+            out.writeObject(user);
         }
 
         private void registerUser(User user) {
@@ -101,9 +99,17 @@ public class Server {
             userResources.add(user);
         }
 
+        private boolean requestIsUser(Object object) {
+            return object instanceof User;
+        }
+
         private User find(User user) {
             UserResources userResources = new UserResources();
             return userResources.get(user.getLogin());
+        }
+
+        public ObjectOutputStream getOutputStream() {
+            return out;
         }
     }
 }
