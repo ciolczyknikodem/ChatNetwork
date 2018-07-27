@@ -61,6 +61,9 @@ public class Server {
                     if (requestIsUser(object)) {
                         Client client = (Client) object;
                         registerUser(client);
+
+                        client = find(client);
+                        out.writeObject(client);
                     }
                     else {
                         Message message = (Message) object;
@@ -96,6 +99,11 @@ public class Server {
         private void registerUser(Client user) {
             UserResources userResources = new UserResources();
             userResources.add(user);
+        }
+
+        private Client find(Client user) {
+            UserResources userResources = new UserResources();
+            return userResources.get(user.getLogin());
         }
     }
 }
