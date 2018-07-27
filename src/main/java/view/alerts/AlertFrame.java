@@ -6,13 +6,13 @@ import utils.FrameManager;
 
 import javax.swing.*;
 
-public class AlertRegistration {
+public class AlertFrame {
     private boolean isSuccessful;
     private JButton acceptButton;
-    private JPanel registrationAlertPane;
+    private JPanel alertPane;
     private JLabel infoLabel;
 
-    public AlertRegistration(boolean isSuccessful) {
+    public AlertFrame(boolean isSuccessful) {
         this.isSuccessful = isSuccessful;
         setContextForAlert();
         acceptButtonEvent();
@@ -40,7 +40,7 @@ public class AlertRegistration {
         }
     }
 
-    public JPanel getRegistrationAlertPane() {
-        return registrationAlertPane;
+    public JPanel getAlertPane() {
+        return alertPane;
     }
 }

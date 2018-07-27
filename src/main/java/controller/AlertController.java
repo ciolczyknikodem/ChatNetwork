@@ -1,7 +1,7 @@
 package controller;
 
 import utils.FrameManager;
-import view.alerts.AlertRegistration;
+import view.alerts.AlertFrame;
 
 import javax.swing.*;
 
@@ -12,7 +12,7 @@ public class AlertController {
     public static void registrationAlert(boolean isSuccessful) {
         registrationAlert = new JFrame();
 
-        registrationAlert.setContentPane(new AlertRegistration(isSuccessful).getRegistrationAlertPane());
+        registrationAlert.setContentPane(new AlertFrame(isSuccessful).getAlertPane());
         registrationAlert.pack();
 
         FrameManager.displayCenter(registrationAlert);
