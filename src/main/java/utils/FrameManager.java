@@ -1,5 +1,6 @@
 package utils;
 
+import controller.RegistrationProcess;
 import dao.UserResources;
 import model.Client;
 

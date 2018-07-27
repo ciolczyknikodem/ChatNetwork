@@ -1,10 +1,10 @@
 package serverlogic;
 
+import dao.UserResources;
+import model.Client;
 import model.Message;
-import java.io.EOFException;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+
+import java.io.*;
 import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -15,7 +15,7 @@ public class Server {
     private final int port;
     private final String address;
 
-    private static final List<ObjectOutputStream> clients = new ArrayList<>(); //Todo Change this to Clients?
+    private static final List<IncomingRequestHandler> clients = new ArrayList<>(); //Todo Change this to Clients?
 
     public Server(int port, String address) {
         this.port = port;
@@ -36,31 +36,47 @@ public class Server {
     private static class IncomingRequestHandler extends Thread {
 
         private final Socket socket;
+        private int ID;
+        private ObjectInputStream in;
+        private ObjectOutputStream out;
 
         public IncomingRequestHandler(Socket socket) {
             this.socket = socket;
+            this.ID = socket.getPort();
         }
 
         @Override
         public void run() {
             try {
-                ObjectInputStream in = new ObjectInputStream(socket.getInputStream());
-                ObjectOutputStream out = new ObjectOutputStream(socket.getOutputStream());
+                in = new ObjectInputStream(socket.getInputStream());
+                out = new ObjectOutputStream(socket.getOutputStream());
 
                 synchronized (clients) {
-                    clients.add(out); // Todo Check if client in database?
+                    clients.add(this); // Todo Check if client in database?
                 }
 
                 while (true) {
-                    Message message = (Message) in.readObject();
-                    clients.forEach(objectOutputStream -> {
-                        try {
-                            objectOutputStream.writeObject(message); //Todo Write message to database
-                            System.out.println(message);
-                        } catch (IOException e) {
-                            e.printStackTrace();
+                    Object object = in.readObject();
+
+                    if (requestIsUser(object)) {
+                        Client client = (Client) object;
+                        registerUser(client);
+
+                        client = find(client);
+                        out.writeObject(client);
+                    }
+                    else {
+                        Message message = (Message) object;
+                        for (IncomingRequestHandler element : clients) {
+
+                            try {
+                                element.getOutputStream().writeObject(message); //Todo Write message to database
+                                System.out.println(message);
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
                         }
-                    });
+                    }
                 }
 
 
@@ -70,6 +86,24 @@ public class Server {
             } catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace();
             }
+        }
+
+        private boolean requestIsUser(Object object) {
+            return object instanceof Client;
+        }
+
+        public ObjectOutputStream getOutputStream() {
+            return out;
+        }
+
+        private void registerUser(Client user) {
+            UserResources userResources = new UserResources();
+            userResources.add(user);
+        }
+
+        private Client find(Client user) {
+            UserResources userResources = new UserResources();
+            return userResources.get(user.getLogin());
         }
     }
 }
