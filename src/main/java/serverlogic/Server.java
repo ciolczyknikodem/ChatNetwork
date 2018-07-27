@@ -1,7 +1,7 @@
 package serverlogic;
 
 import dao.UserResources;
-import model.Client;
+import model.User;
 import model.Message;
 
 import java.io.*;
@@ -59,11 +59,11 @@ public class Server {
                     Object object = in.readObject();
 
                     if (requestIsUser(object)) {
-                        Client client = (Client) object;
-                        registerUser(client);
-
-                        client = find(client);
-                        out.writeObject(client);
+                        User user = (User) object;
+                        registerUser(user);
+                        // TODO server must catch duplicates and response exception, now its freeze app
+                        user = find(user);
+                        out.writeObject(user);
                     }
                     else {
                         Message message = (Message) object;
@@ -89,19 +89,19 @@ public class Server {
         }
 
         private boolean requestIsUser(Object object) {
-            return object instanceof Client;
+            return object instanceof User;
         }
 
         public ObjectOutputStream getOutputStream() {
             return out;
         }
 
-        private void registerUser(Client user) {
+        private void registerUser(User user) {
             UserResources userResources = new UserResources();
             userResources.add(user);
         }
 
-        private Client find(Client user) {
+        private User find(User user) {
             UserResources userResources = new UserResources();
             return userResources.get(user.getLogin());
         }

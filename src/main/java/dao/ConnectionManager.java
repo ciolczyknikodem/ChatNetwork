@@ -1,14 +1,10 @@
 package dao;
 
-import model.Client;
+import model.User;
 import model.Message;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.boot.Metadata;
-import org.hibernate.boot.MetadataSources;
-import org.hibernate.boot.registry.StandardServiceRegistry;
-import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 
 public class ConnectionManager {
@@ -21,7 +17,7 @@ public class ConnectionManager {
     protected void initializeFactory() {
         sessionFactory = new Configuration()
                 .configure("hibernate.cfg.xml")
-                .addAnnotatedClass(Client.class)
+                .addAnnotatedClass(User.class)
                 .addAnnotatedClass(Message.class)
                 .buildSessionFactory();
 

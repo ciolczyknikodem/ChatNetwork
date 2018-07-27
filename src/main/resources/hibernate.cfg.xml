@@ -20,7 +20,7 @@
 
         <property name="current_session_context_class">thread</property>
 
-        <mapping class="model.Client"/>
+        <mapping class="model.User"/>
 
     </session-factory>
 </hibernate-configuration>

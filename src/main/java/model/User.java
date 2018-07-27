@@ -5,7 +5,7 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "users")
-public class Client implements Serializable {
+public class User implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,15 +24,15 @@ public class Client implements Serializable {
     @Transient
     private boolean toRegistration;
 
-    public Client() { }
+    public User() { }
 
-    public Client(String login, String password) {
+    public User(String login, String password) {
         this.login = login;
         this.password = password;
         this.toRegistration = true;
     }
 
-    public Client(int ID, String login, String password) {
+    public User(int ID, String login, String password) {
         this.ID = ID;
         this.login = login;
         this.password = password;
@@ -68,7 +68,7 @@ public class Client implements Serializable {
 
     @Override
     public String toString() {
-        return "Client{" +
+        return "User{" +
                 "ID=" + ID +
                 ", login='" + login + '\'' +
                 ", password='" + password + '\'' +

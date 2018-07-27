@@ -1,7 +1,7 @@
 package client;
 
 
-import model.Client;
+import model.User;
 
 import java.io.IOException;
 import java.net.Socket;
@@ -20,8 +20,8 @@ public class ClientController {
 
     public void start() throws IOException {
         socket = new Socket(ipAddress, port);
-        Client client = new Client("Adam", "Kruk");
-        Conversation conversation = new Conversation(socket, client, new ArrayList<>());
+        User user = new User("Adam", "Kruk");
+        Conversation conversation = new Conversation(socket, user, new ArrayList<>());
         conversation.start();
     }
 }

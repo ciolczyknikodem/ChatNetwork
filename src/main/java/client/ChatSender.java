@@ -1,6 +1,6 @@
 package client;
 
-import model.Client;
+import model.User;
 import model.Message;
 
 import java.io.*;
@@ -11,11 +11,11 @@ import java.util.Scanner;
 public class ChatSender {
 
     private ObjectOutputStream writer;
-    private Client client;
-    private List<Client> userList;
+    private User user;
+    private List<User> userList;
 
-    public ChatSender(ObjectOutputStream writer, Client client, List<Client> userList) {
-        this.client = client;
+    public ChatSender(ObjectOutputStream writer, User user, List<User> userList) {
+        this.user = user;
         this.writer = writer;
         this.userList = userList;
     }
@@ -23,7 +23,7 @@ public class ChatSender {
     public void runSender() throws IOException {
         while (true) {
             Scanner scanner = new Scanner(System.in);
-            Message message = new Message(client.getID(), scanner.nextLine());
+            Message message = new Message(user.getID(), scanner.nextLine());
             try {
                 writer.writeObject(message);
             } catch (SocketException e) {

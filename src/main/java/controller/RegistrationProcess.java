@@ -1,6 +1,6 @@
 package controller;
 
-import model.Client;
+import model.User;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -13,7 +13,7 @@ public class RegistrationProcess {
     private ObjectOutputStream out;
     private ObjectInputStream in;
     private boolean isRunning;
-    private Client userResponse;
+    private User userResponse;
 
     public RegistrationProcess(String ipAddress, int port) {
         try {
@@ -24,13 +24,13 @@ public class RegistrationProcess {
         }
     }
 
-    public boolean run(Client user) {
+    public boolean run(User user) {
         serverRequest(user);
 
         isRunning = true;
         while(isRunning) {
             try {
-                userResponse = (Client) in.readObject();
+                userResponse = (User) in.readObject();
             } catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace();
             }
@@ -44,7 +44,7 @@ public class RegistrationProcess {
         return false;
     }
 
-    private void serverRequest(Client user) {
+    private void serverRequest(User user) {
         try {
             out = new ObjectOutputStream(socket.getOutputStream());
             out.writeObject(user);

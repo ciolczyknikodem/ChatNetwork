@@ -1,13 +1,13 @@
 package dao;
 
-import model.Client;
+import model.User;
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Restrictions;
 
 public class UserResources extends ConnectionManager implements ManageDB {
 
 
-    public boolean add(Client user) {
+    public boolean add(User user) {
         try {
             initializeFactory();
             session.persist(user);
@@ -23,13 +23,13 @@ public class UserResources extends ConnectionManager implements ManageDB {
         return true;
     }
 
-    public Client get(String login) {
-        Client user = null;
+    public User get(String login) {
+        User user = null;
 
         try {
             initializeFactory();
-            Criteria criteria = session.createCriteria(Client.class);
-            user = (Client) criteria.add(Restrictions.eq("login", login)).uniqueResult();
+            Criteria criteria = session.createCriteria(User.class);
+            user = (User) criteria.add(Restrictions.eq("login", login)).uniqueResult();
         }
         catch (Exception e) {
             System.out.println(e.getClass().getName() + " --> " + e.getMessage());

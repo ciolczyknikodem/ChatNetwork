@@ -1,6 +1,7 @@
 package client;
 
-import model.Client;
+import model.User;
+
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
@@ -10,12 +11,12 @@ import java.util.List;
 public class Conversation {
     private ChatSender sender;
     private ChatReciver reciver;
-    private Client author;
-    private List<Client> userList;
+    private User author;
+    private List<User> userList;
     private Socket socket;
     private ObjectOutputStream writer;
 
-    public Conversation(Socket socket, Client author, List<Client> userList) {
+    public Conversation(Socket socket, User author, List<User> userList) {
         this.socket = socket;
         this.author = author;
         this.userList = userList;

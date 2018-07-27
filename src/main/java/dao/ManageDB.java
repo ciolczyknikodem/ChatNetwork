@@ -1,9 +1,9 @@
 package dao;
 
-import model.Client;
+import model.User;
 
 interface ManageDB {
 
-    boolean add(Client user);
-    Client get(String login);
+    boolean add(User user);
+    User get(String login);
 }

@@ -1,13 +1,11 @@
 package controller;
 
-import client.ClientController;
-import model.Client;
+import model.User;
 import utils.FrameManager;
 import view.MainFrame;
 import view.Registration;
 
 import javax.swing.*;
-import java.io.IOException;
 
 public class MainController {
     private static JFrame mainFrame;
@@ -15,7 +13,7 @@ public class MainController {
 
     private static String ipAddress;
     private static int port;
-    private static Client user;
+    private static User user;
 
     public MainController(String ipAddress, int port) {
         MainController.ipAddress = ipAddress;
@@ -58,7 +56,7 @@ public class MainController {
         return port;
     }
 
-    public static void setUser(Client user) {
+    public static void setUser(User user) {
         MainController.user = user;
     }
 }
