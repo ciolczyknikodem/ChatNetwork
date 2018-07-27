@@ -9,10 +9,10 @@ public class AlertController {
 
     private static JFrame registrationAlert;
 
-    public static void registrationAlert(boolean isSuccessful) {
+    public static void registrationAlert(String message) {
         registrationAlert = new JFrame();
 
-        registrationAlert.setContentPane(new AlertFrame(isSuccessful).getAlertPane());
+        registrationAlert.setContentPane(new AlertFrame(message).getAlertPane());
         registrationAlert.pack();
 
         FrameManager.displayCenter(registrationAlert);

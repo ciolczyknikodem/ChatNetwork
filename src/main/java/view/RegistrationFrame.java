@@ -4,6 +4,7 @@ import controller.AlertController;
 import controller.MainController;
 import controller.RegistrationProcess;
 import model.User;
+import utils.AppEvents;
 import utils.FrameManager;
 
 import javax.swing.*;
@@ -35,7 +36,7 @@ public class RegistrationFrame {
                 requestServerRegistrationUser(logs);
             }
             else {
-                AlertController.registrationAlert(false);
+                AlertController.registrationAlert(AppEvents.REGISTER_FAILED.getMessage());
             }
         });
     }
@@ -62,10 +63,10 @@ public class RegistrationFrame {
         User user = new User(logs[LOGIN_INDEX], logs[PASSWORD_INDEX]);
 
         if(registrationProcess.run(user)) {
-            AlertController.registrationAlert(true);
+            AlertController.registrationAlert(AppEvents.REGISTER_SUCCESSFUL.getMessage());
         }
         else {
-            AlertController.registrationAlert(false);
+            AlertController.registrationAlert(AppEvents.REGISTER_FAILED.getMessage());
 
         }
     }
