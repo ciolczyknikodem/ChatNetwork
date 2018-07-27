@@ -1,5 +1,6 @@
 package view;
 
+import controller.AlertController;
 import controller.MainController;
 import controller.RegistrationProcess;
 import model.Client;
@@ -30,8 +31,12 @@ public class Registration {
             );
 
             Client user = new Client(login, password);
-            if(registrationProcess.run(user)) {
 
+            if(registrationProcess.run(user)) {
+                AlertController.registrationAlert(true);
+            }
+            else {
+                AlertController.registrationAlert(false);
             }
         });
     }
