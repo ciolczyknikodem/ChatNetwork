@@ -54,7 +54,7 @@ public class RegistrationFrame {
         return new String[] {login, password, repeatedPassword};
     }
 
-    private void requestServerRegistrationUser(String[] logs) {
+    private synchronized void requestServerRegistrationUser(String[] logs) {
         RegistrationProcess registrationProcess = new RegistrationProcess(
                 MainController.getIpAddress(),
                 MainController.getPort()
@@ -62,7 +62,10 @@ public class RegistrationFrame {
 
         User user = new User(logs[LOGIN_INDEX], logs[PASSWORD_INDEX]);
 
-        if(registrationProcess.run(user)) {
+        registrationProcess.setUserRequest(user);
+        new Thread(registrationProcess).start();
+
+        if(registrationProcess.getUserRequest() != null) {
             AlertController.registrationAlert(AppEvents.REGISTER_SUCCESSFUL.getMessage());
         }
         else {

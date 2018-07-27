@@ -7,13 +7,14 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 
-public class RegistrationProcess {
+public class RegistrationProcess implements Runnable {
 
     private Socket socket;
     private ObjectOutputStream out;
     private ObjectInputStream in;
     private boolean isRunning;
     private User userResponse;
+    private User userRequest;
 
     public RegistrationProcess(String ipAddress, int port) {
         try {
@@ -24,11 +25,11 @@ public class RegistrationProcess {
         }
     }
 
-    public boolean run(User user) {
-        serverRequest(user);
+    public synchronized void run() {
+        serverRequest(userRequest);
 
         isRunning = true;
-        while(isRunning) {
+        while (isRunning) {
             try {
                 userResponse = (User) in.readObject();
             } catch (IOException | ClassNotFoundException e) {
@@ -36,12 +37,9 @@ public class RegistrationProcess {
             }
             if (userResponse != null) {
                 MainController.setUser(userResponse);
-
                 isRunning = false;
-                return true;
             }
         }
-        return false;
     }
 
     private void serverRequest(User user) {
@@ -54,5 +52,13 @@ public class RegistrationProcess {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void setUserRequest(User userRequest) {
+        this.userRequest = userRequest;
+    }
+
+    public User getUserRequest() {
+        return userRequest;
     }
 }
