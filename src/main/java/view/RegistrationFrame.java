@@ -8,7 +8,7 @@ import utils.FrameManager;
 
 import javax.swing.*;
 
-public class Registration {
+public class RegistrationFrame {
     private final int LOGIN_INDEX = 0;
     private final int PASSWORD_INDEX = 1;
     private final int REPEATED_PASSWORD_INDEX = 2;
@@ -20,7 +20,7 @@ public class Registration {
     private JPanel registrationPanel;
     private JPasswordField passwordField1;
 
-    public Registration() {
+    public RegistrationFrame() {
         backButtonEvent();
         registerButtonEvent();
     }

@@ -3,7 +3,7 @@ package controller;
 import model.User;
 import utils.FrameManager;
 import view.MainFrame;
-import view.Registration;
+import view.RegistrationFrame;
 
 import javax.swing.*;
 
@@ -33,7 +33,7 @@ public class MainController {
 
     public static void runRegistration() {
         registrationFrame = new JFrame("User registration");
-        registrationFrame.setContentPane(new Registration().getRegistrationPanel());
+        registrationFrame.setContentPane(new RegistrationFrame().getRegistrationPanel());
 
         registrationFrame.pack();
         FrameManager.displayCenter(registrationFrame);
