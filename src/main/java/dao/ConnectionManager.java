@@ -11,7 +11,7 @@ import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 
-class ConnectionManager {
+public class ConnectionManager {
 
     protected SessionFactory sessionFactory;
     protected Transaction transaction;

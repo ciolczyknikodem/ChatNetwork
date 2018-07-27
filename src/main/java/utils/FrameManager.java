@@ -28,4 +28,14 @@ public class FrameManager {
         return sb.toString();
     }
 
+    public static boolean registerNewUser(String login, String password) {
+        UserResources userResources = new UserResources();
+
+        Client user = new Client(login, password);
+        return userResources.add(user);
+    }
+
+    public static boolean validatePassword(String firstInput, String secondInput) {
+        return firstInput.equals(secondInput);
+    }
 }
