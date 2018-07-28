@@ -9,6 +9,9 @@ import java.net.Socket;
 
 public class RequestServerProcess implements Runnable {
 
+    private static String ipAddress;
+    private static int port;
+
     private Socket socket;
     private ObjectOutputStream out;
     private ObjectInputStream in;
@@ -16,7 +19,7 @@ public class RequestServerProcess implements Runnable {
     private User userResponse;
     private User userRequest;
 
-    public RequestServerProcess(String ipAddress, int port) {
+    public RequestServerProcess() {
         try {
             this.socket = new Socket(ipAddress, port);
         }
@@ -24,7 +27,7 @@ public class RequestServerProcess implements Runnable {
             System.out.println(e.getMessage());
         }
     }
-    
+
     public synchronized void run() {
         serverRequest(userRequest);
 
@@ -60,5 +63,13 @@ public class RequestServerProcess implements Runnable {
 
     public User getUserRequest() {
         return userRequest;
+    }
+
+    public static void setIpAddress(String ipAddress) {
+        RequestServerProcess.ipAddress = ipAddress;
+    }
+
+    public static void setPort(int port) {
+        RequestServerProcess.port = port;
     }
 }

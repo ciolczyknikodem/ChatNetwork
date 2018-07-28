@@ -11,13 +11,11 @@ public class MainController {
     private static JFrame mainFrame;
     private static JFrame registrationFrame;
 
-    private static String ipAddress;
-    private static int port;
     private static User user;
 
     public MainController(String ipAddress, int port) {
-        MainController.ipAddress = ipAddress;
-        MainController.port = port;
+        RequestServerProcess.setIpAddress(ipAddress);
+        RequestServerProcess.setPort(port);
     }
 
     public static void runApp() {
@@ -46,14 +44,6 @@ public class MainController {
 
     public static JFrame getRegistrationFrame() {
         return registrationFrame;
-    }
-
-    public static String getIpAddress() {
-        return ipAddress;
-    }
-
-    public static int getPort() {
-        return port;
     }
 
     public static void setUser(User user) {
