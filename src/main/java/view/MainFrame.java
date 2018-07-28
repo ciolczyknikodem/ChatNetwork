@@ -29,16 +29,20 @@ public class MainFrame {
     }
 
 
-    private void exitEvent() {
-        exitButton.addActionListener(e -> System.exit(0));
-    }
-
     private void registrationEvent() {
         registerButton.addActionListener(e -> {
             MainController.runRegistration();
             FrameManager.changeFrameDisplay(MainController.getRegistrationFrame(), MainController.getMainFrame());
 
         });
+    }
+
+    private void handleLoginUser(String login, String password) {
+
+    }
+
+    private void exitEvent() {
+        exitButton.addActionListener(e -> System.exit(0));
     }
 
     public JPanel getPanelMain() {

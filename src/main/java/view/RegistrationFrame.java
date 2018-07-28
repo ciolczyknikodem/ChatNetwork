@@ -2,9 +2,9 @@ package view;
 
 import controller.AlertController;
 import controller.MainController;
-import controller.RegistrationProcess;
+import controller.RequestServerProcess;
 import model.User;
-import utils.AppEvents;
+import utils.EventMessage;
 import utils.FrameManager;
 
 import javax.swing.*;
@@ -33,10 +33,10 @@ public class RegistrationFrame {
             String[] logs = getLogsFromFrame();
 
             if (FrameManager.validatePassword(logs[PASSWORD_INDEX], logs[REPEATED_PASSWORD_INDEX])) {
-                requestServerRegistrationUser(logs);
+                requestServerRegisterUser(logs);
             }
             else {
-                AlertController.registrationAlert(AppEvents.REGISTER_FAILED.getMessage());
+                AlertController.registrationAlert(EventMessage.REGISTER_FAILED.getMessage());
             }
         });
     }
@@ -54,22 +54,22 @@ public class RegistrationFrame {
         return new String[] {login, password, repeatedPassword};
     }
 
-    private synchronized void requestServerRegistrationUser(String[] logs) {
-        RegistrationProcess registrationProcess = new RegistrationProcess(
+    private synchronized void requestServerRegisterUser(String[] logs) {
+        RequestServerProcess requestServerProcess = new RequestServerProcess(
                 MainController.getIpAddress(),
                 MainController.getPort()
         );
 
         User user = new User(logs[LOGIN_INDEX], logs[PASSWORD_INDEX]);
 
-        registrationProcess.setUserRequest(user);
-        new Thread(registrationProcess).start();
+        requestServerProcess.setUserRequest(user);
+        new Thread(requestServerProcess).start();
 
-        if(registrationProcess.getUserRequest() != null) {
-            AlertController.registrationAlert(AppEvents.REGISTER_SUCCESSFUL.getMessage());
+        if(requestServerProcess.getUserRequest() != null) {
+            AlertController.registrationAlert(EventMessage.REGISTER_SUCCESSFUL.getMessage());
         }
         else {
-            AlertController.registrationAlert(AppEvents.REGISTER_FAILED.getMessage());
+            AlertController.registrationAlert(EventMessage.REGISTER_FAILED.getMessage());
 
         }
     }

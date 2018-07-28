@@ -1,11 +1,11 @@
 package utils;
 
-public enum AppEvents {
+public enum EventMessage {
     REGISTER_SUCCESSFUL("Registration successful!"),
     REGISTER_FAILED("Registration failed!");
 
     private String message;
-    AppEvents(String message) {
+    EventMessage(String message) {
         this.message = message;
     }
 

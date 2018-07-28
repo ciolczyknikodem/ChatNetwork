@@ -2,7 +2,7 @@ package view.alerts;
 
 import controller.AlertController;
 import controller.MainController;
-import utils.AppEvents;
+import utils.EventMessage;
 import utils.FrameManager;
 
 import javax.swing.*;
@@ -26,7 +26,7 @@ public class AlertFrame {
     }
 
     private void setContextForAlert() {
-        if(message.equals(AppEvents.REGISTER_SUCCESSFUL.getMessage())) {
+        if(message.equals(EventMessage.REGISTER_SUCCESSFUL.getMessage())) {
             infoLabel.setText("Register successful!");
         }
         else {
@@ -35,7 +35,7 @@ public class AlertFrame {
     }
 
     private void registerEvent() {
-        if(message.equals(AppEvents.REGISTER_SUCCESSFUL.getMessage())) {
+        if(message.equals(EventMessage.REGISTER_SUCCESSFUL.getMessage())) {
             FrameManager.changeFrameDisplay(
                     MainController.getMainFrame(), MainController.getRegistrationFrame());
         }

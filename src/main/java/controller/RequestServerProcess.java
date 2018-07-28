@@ -7,7 +7,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 
-public class RegistrationProcess implements Runnable {
+public class RequestServerProcess implements Runnable {
 
     private Socket socket;
     private ObjectOutputStream out;
@@ -16,7 +16,7 @@ public class RegistrationProcess implements Runnable {
     private User userResponse;
     private User userRequest;
 
-    public RegistrationProcess(String ipAddress, int port) {
+    public RequestServerProcess(String ipAddress, int port) {
         try {
             this.socket = new Socket(ipAddress, port);
         }
@@ -24,7 +24,7 @@ public class RegistrationProcess implements Runnable {
             System.out.println(e.getMessage());
         }
     }
-
+    
     public synchronized void run() {
         serverRequest(userRequest);
 
