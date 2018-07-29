@@ -90,8 +90,15 @@ public class Server {
             if(user.isToRegistration()) {
                 registerUser(user);
             }
+            else {
+                signInUser(user);
+            }
             user = find(user);
             out.writeObject(user);
+        }
+
+        private User signInUser(User user) {
+            return find(user);
         }
 
         private void registerUser(User user) {

@@ -29,6 +29,9 @@ public class MainFrame {
         signInButton.addActionListener(e -> {
             String password = FrameManager.buildPassword(passwordField.getPassword());
             String login = loginField.getText();
+
+            handleLoginUser(login, password);
+            // TODO: open chat frame with User instance
         });
     }
 
@@ -49,9 +52,11 @@ public class MainFrame {
 
         if(requestServer.getUserResponse() != null) {
             AlertController.alertFrame(EventMessage.LOGIN_SUCCESSFUL.getMessage());
+            // TODO: Action --> open chat Frame for user
         }
         else {
             AlertController.alertFrame(EventMessage.LOGIN_FAILED.getMessage());
+            // TODO: Import user from DB went wrong!
         }
     }
 
