@@ -30,7 +30,7 @@ public class AlertFrame {
             infoLabel.setText("Register successful!");
         }
         else {
-            infoLabel.setText("RegistrationFrame failed!");
+            infoLabel.setText("Registration failed!");
         }
     }
 

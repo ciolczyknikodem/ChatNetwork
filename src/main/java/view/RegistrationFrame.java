@@ -36,7 +36,7 @@ public class RegistrationFrame {
                 requestServerRegisterUser(logs);
             }
             else {
-                AlertController.registrationAlert(EventMessage.REGISTER_FAILED.getMessage());
+                AlertController.alertFrame(EventMessage.REGISTER_FAILED.getMessage());
             }
         });
     }
@@ -54,22 +54,19 @@ public class RegistrationFrame {
         return new String[] {login, password, repeatedPassword};
     }
 
-    private synchronized void requestServerRegisterUser(String[] logs) {
-        RequestServerProcess requestServerProcess = new RequestServerProcess(
-                MainController.getIpAddress(),
-                MainController.getPort()
-        );
+    private void requestServerRegisterUser(String[] logs) {
+        RequestServerProcess requestServerProcess = new RequestServerProcess();
 
         User user = new User(logs[LOGIN_INDEX], logs[PASSWORD_INDEX]);
 
         requestServerProcess.setUserRequest(user);
-        new Thread(requestServerProcess).start();
+        requestServerProcess.run();
 
-        if(requestServerProcess.getUserRequest() != null) {
-            AlertController.registrationAlert(EventMessage.REGISTER_SUCCESSFUL.getMessage());
+        if(requestServerProcess.getUserResponse() != null) {
+            AlertController.alertFrame(EventMessage.REGISTER_SUCCESSFUL.getMessage());
         }
         else {
-            AlertController.registrationAlert(EventMessage.REGISTER_FAILED.getMessage());
+            AlertController.alertFrame(EventMessage.REGISTER_FAILED.getMessage());
 
         }
     }
