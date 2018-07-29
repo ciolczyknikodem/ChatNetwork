@@ -7,19 +7,19 @@ import javax.swing.*;
 
 public class AlertController {
 
-    private static JFrame registrationAlert;
+    private static JFrame alertFrame;
 
-    public static void registrationAlert(String message) {
-        registrationAlert = new JFrame();
+    public static void alertFrame(String message) {
+        alertFrame = new JFrame();
 
-        registrationAlert.setContentPane(new AlertFrame(message).getAlertPane());
-        registrationAlert.pack();
+        alertFrame.setContentPane(new AlertFrame(message).getAlertPane());
+        alertFrame.pack();
 
-        FrameManager.displayCenter(registrationAlert);
-        registrationAlert.setVisible(true);
+        FrameManager.displayCenter(alertFrame);
+        alertFrame.setVisible(true);
     }
 
-    public static JFrame getRegistrationAlert() {
-        return registrationAlert;
+    public static JFrame getAlertFrame() {
+        return alertFrame;
     }
 }

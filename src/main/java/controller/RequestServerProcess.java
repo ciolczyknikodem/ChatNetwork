@@ -7,7 +7,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 
-public class RequestServerProcess implements Runnable {
+public class RequestServerProcess {
 
     private static String ipAddress;
     private static int port;
@@ -21,6 +21,8 @@ public class RequestServerProcess implements Runnable {
 
     public RequestServerProcess() {
         try {
+            this.userResponse = null;
+            this.userRequest = null;
             this.socket = new Socket(ipAddress, port);
         }
         catch (IOException e) {
@@ -28,16 +30,18 @@ public class RequestServerProcess implements Runnable {
         }
     }
 
-    public synchronized void run() {
+    public void run() {
         serverRequest(userRequest);
 
         isRunning = true;
         while (isRunning) {
             try {
                 userResponse = (User) in.readObject();
-            } catch (IOException | ClassNotFoundException e) {
+            }
+            catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace();
             }
+
             if (userResponse != null) {
                 MainController.setUser(userResponse);
                 isRunning = false;
@@ -61,8 +65,8 @@ public class RequestServerProcess implements Runnable {
         this.userRequest = userRequest;
     }
 
-    public User getUserRequest() {
-        return userRequest;
+    public User getUserResponse() {
+        return userResponse;
     }
 
     public static void setIpAddress(String ipAddress) {
