@@ -9,7 +9,6 @@ public class UserResources extends ConnectionManager implements ManageDB {
         try {
             session = sessionFactory.getCurrentSession();
             session.beginTransaction();
-            System.out.println(user);
             session.save(user);
             session.getTransaction().commit();
         } catch (ConstraintViolationException e){
@@ -22,15 +21,15 @@ public class UserResources extends ConnectionManager implements ManageDB {
         User user = null;
 
         try {
-            initializeFactory();
-            Criteria criteria = session.createCriteria(User.class);
-            user = (User) criteria.add(Restrictions.eq("login", login)).uniqueResult();
+            session = sessionFactory.getCurrentSession();
+            session.beginTransaction();
+            user = (User) session.createQuery("FROM User where login = :login")
+                                 .setParameter("login", login)
+                                 .getSingleResult();
+            session.getTransaction().commit();
         }
         catch (Exception e) {
             System.out.println(e.getClass().getName() + " --> " + e.getMessage());
-        }
-        finally {
-            closeConnection();
         }
         return user;
     }
