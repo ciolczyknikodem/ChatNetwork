@@ -1,24 +1,19 @@
 package dao;
 
 import model.User;
-import org.hibernate.Criteria;
-import org.hibernate.criterion.Restrictions;
+import org.hibernate.exception.ConstraintViolationException;
 
 public class UserResources extends ConnectionManager implements ManageDB {
 
-
     public boolean add(User user) {
         try {
-            initializeFactory();
-            session.persist(user);
-            transaction.commit();
-        }
-        catch (Exception e) {
-            System.out.println(e.getClass().getName() + " --> " + e.getMessage());
+            session = sessionFactory.getCurrentSession();
+            session.beginTransaction();
+            System.out.println(user);
+            session.save(user);
+            session.getTransaction().commit();
+        } catch (ConstraintViolationException e){
             return false;
-        }
-        finally {
-            closeConnection();
         }
         return true;
     }
